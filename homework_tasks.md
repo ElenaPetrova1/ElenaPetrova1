@@ -181,10 +181,10 @@ GROUP BY maker
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=20">20 задача</a></h2>
 
 ```sql
-SELECT DISTINCT Maker, COUNT(model)
-FROM Product
-WHERE type = 'PC'
-GROUP BY Maker
+SELECT maker as Maker, COUNT(model) as Count_Model
+FROM product
+WHERE type='pc'
+GROUP BY maker
 HAVING COUNT(model)>=3
 ```
 
