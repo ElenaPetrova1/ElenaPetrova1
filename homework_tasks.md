@@ -278,14 +278,10 @@ WHERE maker = 'A'
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=27">27 задача</a></h2>
 
 ```sql
-SELECT maker as Maker, AVG(hd) as AVG
-FROM product JOIN pc ON product.model=pc.model
-WHERE maker IN (
-SELECT maker
-FROM product
-WHERE type='printer'
-)
-GROUP BY maker
+SELECT p.maker, AVG(pc.hd) 
+FROM product p JOIN pc pc ON p.model = pc.model 
+WHERE pc.model IN (SELECT model FROM pc) AND maker IN (
+SELECT maker FROM product WHERE type='printer') GROUP BY maker
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=28">28 задача</a></h2>
@@ -341,7 +337,9 @@ WHERE battle = 'North Atlantic' AND result = 'sunk'
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=34">34 задача</a></h2>
 
 ```sql
-SELECT name FROM classes, ships WHERE launched >=1922 AND displacement>35000 AND type='bb' AND
+SELECT DISTINCT name 
+FROM classes, ships 
+WHERE launched >=1922 and displacement>35000 AND type='bb' AND
 ships.class = classes.class
 ```
 
