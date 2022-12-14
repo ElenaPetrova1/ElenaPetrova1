@@ -18,7 +18,7 @@ WHERE type = 'Printer'
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=3">3 задача</a></h2>
 
 ```sql
-SELECT DISTINCT model, ram, screen
+SELECT model, ram, screen
 FROM Laptop
 WHERE price > 1000
 ```
@@ -34,9 +34,9 @@ WHERE color = 'y'
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=5">5 задача</a></h2>
 
 ```sql
-SELECT DISTINCT model, speed, hd
+SELECT model, speed, hd
 FROM PC
-WHERE price < 600 and cd = '12x' or price < 600 and cd = '24x'
+WHERE ( cd = '12x' OR cd = '24x' ) AND price < 600
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=6">6 задача</a></h2>
