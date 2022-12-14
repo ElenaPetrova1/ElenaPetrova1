@@ -211,3 +211,36 @@ FROM PC
 WHERE speed > 600
 GROUP BY speed
 ```
+
+<h2><a href="https://sql-ex.ru/learn_exercises.php?LN=23">23 задача</a></h2>
+
+```sql
+SELECT DISTINCT maker
+FROM product JOIN pc ON product.model=pc.model
+WHERE speed>=750 AND maker IN
+(SELECT maker
+FROM product JOIN laptop ON product.model=laptop.model
+WHERE speed>=750)
+```
+<h2><a href="https://sql-ex.ru/learn_exercises.php?LN=24">24 задача</a></h2>
+
+```sql
+SELECT model 
+FROM (
+ SELECT model, price FROM pc
+ UNION
+ SELECT model, price FROM laptop
+ UNION
+ SELECT model, price FROM printer
+) table1
+WHERE price = (
+ SELECT MAX(price) 
+FROM (
+  SELECT price FROM pc
+  UNION
+  SELECT price FROM laptop
+  UNION
+  SELECT price FROM Printer
+  ) table2
+ )
+ ```
