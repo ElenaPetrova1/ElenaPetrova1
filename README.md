@@ -1,2 +1,4 @@
 # minor_sql
-Config files for my GitHub profile.
+Диаграмма базы данных здесь: https://drawsql.app/teams/poiskkino/diagrams/poiskkino1
+
+
