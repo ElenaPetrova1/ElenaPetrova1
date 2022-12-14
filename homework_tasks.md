@@ -1,12 +1,13 @@
 Решение задач с сайта https://sql-ex.ru
 
-1 задача
-<h1>задача<a href="" target="_blank"></a>
+<h2>1<a href="https://sql-ex.ru/learn_exercises.php?LN=1" target="_blank"></a></h2>
+ 
+```sql
+SELECT model, speed, hd   
+FROM PC
+WHERE price < 500
+```
 
-Решение
-select model, speed, hd
-from pc
-where price < 500
 
 2 задача
 <h1>2 задача<a href="https://sql-ex.ru/learn_exercises.php?LN=2" target="_blank"></a>
