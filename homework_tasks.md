@@ -51,41 +51,32 @@ WHERE l.hd >= 10
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=7">7 задача</a></h2>
 
 ```sql
-SELECT model, price 
-FROM PC 
-WHERE model IN (SELECT model 
- FROM Product 
- WHERE maker = 'B' AND 
- type = 'PC'
- )
+SELECT DISTINCT pc.model, price 
+FROM pc 
+JOIN product on pc.model = product.model 
+WHERE maker = 'B'
+UNION 
+SELECT DISTINCT laptop.model, price 
+FROM laptop 
+JOIN product on laptop.model = product.model 
+WHERE maker = 'B'
 UNION
-SELECT model, price 
-FROM Laptop 
-WHERE model IN (SELECT model 
- FROM Product 
- WHERE maker = 'B' AND 
- type = 'Laptop'
- )
-UNION
-SELECT model, price 
-FROM Printer 
-WHERE model IN (SELECT model 
- FROM Product 
- WHERE maker = 'B' AND 
- type = 'Printer'
-)
+SELECT DISTINCT printer.model, price 
+FROM printer 
+JOIN product on printer.model = product.model 
+WHERE maker = 'B'
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=8">8 задача</a></h2>
 
 ```sql
-SELECT DISTINCT maker
-FROM Product
-WHERE type = 'PC'
-EXCEPT
-SELECT DISTINCT maker
-FROM Product
-WHERE type = 'Laptop'
+SELECT maker 
+FROM product 
+WHERE type = 'pc' 
+EXCEPT 
+SELECT maker 
+FROM product 
+WHERE type = 'laptop'
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=9">9 задача</a></h2>
@@ -110,8 +101,10 @@ WHERE price = (SELECT MAX(price)
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=11">11 задача</a></h2>
 
 ```sql
-SELECT AVG(speed)
-FROM PC
+SELECT 
+AVG(speed) 
+AS Avg_speed 
+FROM pc
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=12">12 задача</a></h2>
@@ -143,26 +136,27 @@ WHERE Classes.numGuns >= 10
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=15">15 задача</a></h2>
 
 ```sql
-SELECT hd
-FROM PC
-GROUP BY hd
-HAVING COUNT(hd) >= 2
+SELECT hd 
+FROM pc 
+GROUP BY (hd) 
+HAVING COUNT(model) >= 2
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=16">16 задача</a></h2>
 
 ```sql
-SELECT DISTINCT A.model AS model, B.model AS model, A.speed As speed, A.ram As ram 
-FROM PC AS A, PC B 
-WHERE A.speed = B.speed AND A.ram = B.ram AND A.model > B.model
+SELECT DISTINCT p1.model, p2.model, p1.speed, p1.ram
+FROM pc p1, pc p2
+WHERE p1.speed = p2.speed AND p1.ram = p2.ram AND p1.model > p2.model
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=17">17 задача</a></h2>
 
 ```sql
-SELECT DISTINCT type, model, speed
-FROM Laptop, (SELECT type FROM Product) AS ProductType
-WHERE speed < ALL (SELECT speed FROM PC) and type = 'laptop'
+SELECT DISTINCT product.type, laptop.model, laptop.speed
+FROM laptop, product
+WHERE speed < (SELECT MIN(speed) FROM pc)
+AND product.type ='Laptop'
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=18">18 задача</a></h2>
