@@ -265,6 +265,7 @@ WHERE type='printer'
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=26">26 задача</a></h2>
+
 ```sql
 SELECT AVG(price) AS AVG_price FROM (SELECT model, price FROM PC
 UNION ALL
@@ -275,6 +276,7 @@ WHERE maker = 'A'
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=27">27 задача</a></h2>
+
 ```sql
 SELECT maker as Maker, AVG(hd) as AVG
 FROM product JOIN pc ON product.model=pc.model
@@ -287,6 +289,7 @@ GROUP BY maker
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=28">28 задача</a></h2>
+
 ```sql
 SELECT COUNT(maker) as Quantity FROM 
 (
@@ -294,6 +297,7 @@ SELECT maker FROM product GROUP BY maker HAVING COUNT(*) = 1
 ) this_table
 ```
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=29">29 задача</a></h2>
+
 ```sql
 SELECT income_o.point, income_o.[date], inc, out FROM income_o LEFT JOIN outcome_o ON outcome_o.point = income_o.point
 AND outcome_o.[date]=income_o.[date]
@@ -301,7 +305,9 @@ UNION
 SELECT outcome_o.point, outcome_o.[date], inc, out FROM income_o RIGHT JOIN outcome_o ON
 outcome_o.point = income_o.point AND outcome_o.[date] = income_o.[date]
 ```
+
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=30">30 задача</a></h2>
+
 ```sql
 SELECT point, [date], SUM(outs), SUM(incs) FROM
 (SELECT point, [date], SUM(out) outs, null incs FROM outcome GROUP BY point, [date]
@@ -310,12 +316,14 @@ SELECT point, [date], null, SUM(inc) incs FROM income GROUP BY point, [date]) th
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=31">31 задача</a></h2>
+
 ```sql
 SELECT class, country
 FROM classes
 WHERE bore>=16
 ```
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=32">32 задача</a></h2>
+
 ```sql
 SELECT country, cast(avg(bore*bore*bore/2) as numeric(38,2)) FROM
 (SELECT country, name, bore FROM ships sh JOIN classes c ON sh.class=c.class
@@ -331,18 +339,23 @@ FROM Outcomes
 WHERE battle = 'North Atlantic' AND result = 'sunk'
 ```
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=34">34 задача</a></h2>
+
 ```sql
 SELECT name FROM classes, ships WHERE launched >=1922 AND displacement>35000 AND type='bb' AND
 ships.class = classes.class
 ```
+
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=35">35 задача</a></h2>
+
 ```sql
 SELECT model, type
 FROM product
 WHERE upper(model) NOT like '%[^A-Z]%'
 OR model not like '%[^0-9]%'
 ```
+
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=36">36 задача</a></h2>
+
 ```sql
 SELECT DISTINCT name as Name FROM (
 SELECT name FROM ships
@@ -351,7 +364,9 @@ SELECT ship FROM outcomes
 ) t1
 WHERE name IN (SELECT class FROM classes)
 ```
+
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=37">37 задача</a></h2>
+
 ```sql
 SELECT c.class FROM Classes c
 LEFT JOIN (Select class, name FROM Ships
@@ -363,6 +378,7 @@ HAVING COUNT(s.name)=1
 ```
 
 <h2><a href="https://sql-ex.ru/learn_exercises.php?LN=38">38 задача</a></h2>
+
 ```sql
 SELECT DISTINCT country as COUNTRY
 FROM classes
